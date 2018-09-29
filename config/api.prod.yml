@@ -1,0 +1,8 @@
+# app
+app:
+  host: 0.0.0.0
+  port: 8080
+
+workers:
+    max_workers: 1
+    model_path: "model/model.h5"

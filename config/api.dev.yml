@@ -1,0 +1,6 @@
+app:
+  host: 0.0.0.0
+  port: 8000
+workers:
+    max_workers: 1
+    model_path: "model/vgg.model"
