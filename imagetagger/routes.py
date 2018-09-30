@@ -11,7 +11,7 @@ def init_routes(app: web.Application, handler: SiteHandler) -> None:
     add_route = app.router.add_route
 
     add_route('*', '/', handler.index, name='index')
-    add_route('*', '/', handler.predict, name='predict')
+    add_route('*', '/predict', handler.predict, name='predict')
 
     # added static dir
     app.router.add_static(
