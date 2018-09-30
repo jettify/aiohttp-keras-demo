@@ -31,12 +31,8 @@ async def init_app(conf: Config) -> web.Application:
     return app
 
 
-def main(args: Any=None) -> None:
+def main(args: Any = None) -> None:
     conf = get_config(args)
     loop = asyncio.get_event_loop()
     app = loop.run_until_complete(init_app(conf))
-    web.run_app(
-        app,
-        host=conf.app.host,
-        port=conf.app.port,
-    )
+    web.run_app(app, host=conf.app.host, port=conf.app.port)
