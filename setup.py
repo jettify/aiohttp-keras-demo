@@ -10,9 +10,7 @@ REGEXP = re.compile(r"^__version__\W*=\W*'([\d.abrc]+)'")
 def read_version():
 
     init_py = os.path.join(
-        os.path.dirname(__file__),
-        'imagetagger',
-        '__init__.py',
+        os.path.dirname(__file__), 'imagetagger', '__init__.py'
     )
 
     with open(init_py) as f:
@@ -25,11 +23,7 @@ def read_version():
             raise RuntimeError(msg)
 
 
-install_requires = [
-    'aiohttp',
-    'aiohttp_jinja2',
-    'trafaret_config',
-]
+install_requires = ['aiohttp', 'aiohttp_jinja2', 'trafaret_config']
 
 
 setup(
@@ -38,9 +32,7 @@ setup(
     description='imagetagger',
     platforms=['POSIX'],
     packages=find_packages(),
-    package_data={
-        '': ['config/*.*']
-    },
+    package_data={'': ['config/*.*']},
     include_package_data=True,
     install_requires=install_requires,
     zip_safe=False,
