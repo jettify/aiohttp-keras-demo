@@ -5,3 +5,7 @@ flake8
 pytest
 pytest-cov
 pytest-aiohttp
+numpy
+keras
+Pillow
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.0.0-py3-none-any.whl
