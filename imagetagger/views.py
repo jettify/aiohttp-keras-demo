@@ -3,12 +3,10 @@ from typing import Dict
 from concurrent.futures import ProcessPoolExecutor
 
 import aiohttp_jinja2
-import markdown2
 from aiohttp import web
 
 from .worker import predict
 from .utils import Config
-from .constants import PROJECT_DIR
 
 
 class SiteHandler:
@@ -19,10 +17,7 @@ class SiteHandler:
 
     @aiohttp_jinja2.template('index.html')
     async def index(self, request: web.Request) -> Dict[str, str]:
-        with open(PROJECT_DIR / 'README.md') as f:
-            text = markdown2.markdown(f.read())
-
-        return {'text': text}
+        return {}
 
     async def predict(self, request: web.Request) -> web.Response:
         form = await request.post()

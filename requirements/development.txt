@@ -8,4 +8,6 @@ pytest-aiohttp
 numpy
 keras
 Pillow
-https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.0.0-py3-none-any.whl
+markdown2
+dataclasses
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.11.0-py3-none-any.whl

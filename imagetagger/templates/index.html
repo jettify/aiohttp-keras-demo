@@ -34,24 +34,78 @@
             </p>
         </div>
     </header>
-    <h1>Imagetagger - keras model deployment demo</h1>
-    <main>
-        <img id="image-preview"  style="height:100px; width:100px;"  src="" >
-        <input style="display:none" id="input-image-hidden" onchange="handleOnChange('input-image-hidden')" type="file" accept="image/jpeg, image/png">
-        <button  onclick="HandleBrowseClick('input-image-hidden');" >UPLOAD IMAGE</button>
+    <div class="wrapper">
+        <h1 class="subtitle">
+            Imagetagger - keras model deployment demo
+        </h1>
+        <main>
+            <button  class="btn btn-success" onclick="HandleBrowseClick('input-image-hidden');" >Upload image</button>
+            <input style="display: none;" id="input-image-hidden" onchange="handleOnChange('input-image-hidden')" type="file" accept="image/jpeg, image/png">
+            <br>
+            <div class="image-block">
+                <div class="image-wrapper">
+                    <img
+                            id="image-preview"
+                            src="https://crowdsourcer.io/assets/images/no-img.png"
+                    >
+                </div>
+                <div class="predict-info">
+                    <p>
+                        <b>Info:</b>
+                        <div id="data-wrapper"></div>
+                    </p>
+                </div>
+            </div>
 
-        <script type="text/javascript">
+            <script type="text/javascript">
+                function responseToHtml(data) {
+                  let outStr = '';
 
-        function HandleBrowseClick(input_image) {
-            var fileinput = document.getElementById(input_image);
-            fileinput.click();
-        };
-        function handleOnChange(input_image) {
-            var fileinput = document.getElementById(input_image);
-            document.getElementById('image-preview').src = window.URL.createObjectURL(fileinput.files[0])
-        };
-        </script>
-    </main>
-    <footer class="footer"></footer>
+                  for (let i = 1; i < data['predictions'].length + 1; i++) {
+                    let item = data['predictions'][i - 1];
+                    const probability = item['probability'].toFixed(3);
+                    const label = item['label'];
+
+                    outStr += (
+                      "<p>" + i + "." +
+                      "<i>label:</i> " + label + "<br/>" +
+                      "<i>probability:</i> " + probability + "</p>"
+                    )
+                  }
+
+                  return outStr
+                }
+                function HandleBrowseClick(input_image) {
+                    var fileinput = document.getElementById(input_image);
+                    fileinput.click();
+                };
+
+                const upload = (file) => {
+                  const data = new FormData();
+                  const $datWrappaer = document.getElementById('data-wrapper');
+
+                  data.append('file', file);
+
+                  fetch('{{ url("predict") }}', {
+                    method: 'POST',
+                    body: data,
+                  }).then(
+                    response => response.json()
+                  ).then(
+                    data => $datWrappaer.innerHTML = responseToHtml(data)
+                  )
+                };
+
+                function handleOnChange(input_image) {
+                    var input = document.getElementById(input_image);
+                    document.getElementById('image-preview').src = (
+                      window.URL.createObjectURL(input.files[0])
+                    );
+
+                    upload(input.files[0]);
+                };
+            </script>
+        </main>
+    </div>
 </body>
 </html>
