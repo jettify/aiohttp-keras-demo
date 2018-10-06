@@ -7,11 +7,6 @@ Simple application how to use aiohttp_ for deep learning project with keras_.
 classify images, but other supported network can be used.
 
 
-Requirement:
-
-Python 3.6
-
-
 Install the app::
 
     $ git clone https://github.com/jettify/aiohttp-keras-demo.git
@@ -41,6 +36,7 @@ Example of response::
 
 Requirements
 ============
+* Python3.6
 * aiohttp_
 * keras_
 
