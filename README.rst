@@ -6,11 +6,17 @@ Simple application how to use aiohttp_ for deep learning project with keras_.
 **Imagetagger** is API for image recognition, employs mobilenet_ network to
 classify images, but other supported network can be used.
 
+
+Requirement:
+
+Python 3.6
+
+
 Install the app::
 
-    $ cd moderator
-    $ pip -r requirements-dev.txt
-    $ pip install -e .
+    $ git clone https://github.com/jettify/aiohttp-keras-demo.git
+    $ cd aiohttp-keras-demo
+    $ pip install -r requirements/development.txt
 
 
 Run application::
